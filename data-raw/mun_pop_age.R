@@ -20,7 +20,10 @@ mun_pop_age <- mun_pop_age |>
     pop = POP
   ) |>
   dplyr::mutate(
-    sex = dplyr::recode_factor(.x = sex, "1" = "Male", "2" = "Female")
+    codmun = as.character(codmun),
+    year = as.integer(as.character(year)),
+    sex = dplyr::recode_factor(.x = sex, "1" = "Male", "2" = "Female"),
+    age = as.integer(as.character(age))
   )
 
 usethis::use_data(mun_pop_age, overwrite = TRUE, compress = "bzip2")
