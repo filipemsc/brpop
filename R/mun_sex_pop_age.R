@@ -9,11 +9,11 @@
 #' @param age_group_option character or list. SVS1, SVS2 or a list with breaks and labels.
 #'
 #' \describe{
-#'   \item{codmun}{municipality 6 digits code}
-#'   \item{year}{year of the estimative}
-#'   \item{Sex}{Sex}
-#'   \item{age_group}{age group}
-#'   \item{pop}{population estimative}
+#'   \item{codmun}{Municipality 6 digits code}
+#'   \item{year}{Year of the estimative}
+#'   \item{sex}{Sex}
+#'   \item{age_group}{Age group}
+#'   \item{pop}{Population estimative}
 #' }
 #'
 #' @returns A tibble.
@@ -38,19 +38,19 @@ mun_sex_pop_age <- function(age_group_option = "SVS2"){
   # Cluster for parallel processing
   cluster <- multidplyr::new_cluster(n = future::availableCores(omit = 1))
 
-  res <- brpop::mun_pop_age %>%
+  res <- brpop::mun_pop %>%
     dplyr::mutate(age_group = cut(
       x = .data$age,
       breaks = age_breaks,
       labels = age_labels,
       ordered_result = TRUE
     )) %>%
-    dplyr::group_by(.data$codmun, .data$year, .data$age_group) %>%
+    dplyr::group_by(.data$codmun, .data$year, .data$sex, .data$age_group) %>%
     multidplyr::partition(cluster) %>%
     dplyr::summarise(pop = sum(.data$pop, na.rm = TRUE)) %>%
     dplyr::collect() %>%
     dplyr::ungroup() %>%
-    dplyr::arrange(.data$codmun, .data$year, .data$age_group)
+    dplyr::arrange(.data$codmun, .data$year, .data$sex, .data$age_group)
 
   return(res)
 }

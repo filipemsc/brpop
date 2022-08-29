@@ -10,11 +10,11 @@ mun_sex_pop_age(age_group_option = "SVS2")
 \item{age_group_option}{character or list. SVS1, SVS2 or a list with breaks and labels.
 
 \describe{
-\item{codmun}{municipality 6 digits code}
-\item{year}{year of the estimative}
-\item{Sex}{Sex}
-\item{age_group}{age group}
-\item{pop}{population estimative}
+\item{codmun}{Municipality 6 digits code}
+\item{year}{Year of the estimative}
+\item{sex}{Sex}
+\item{age_group}{Age group}
+\item{pop}{Population estimative}
 }}
 }
 \value{
