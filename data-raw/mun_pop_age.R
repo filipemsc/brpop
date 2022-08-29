@@ -1,0 +1,26 @@
+## code to prepare `mun_pop_idade` dataset goes here
+
+list_dbfs <- list.files(path = "data-raw/DBFs", pattern = "*.dbf", full.names = TRUE)
+
+mun_pop_age <- tibble::tibble()
+
+for(f in list_dbfs){
+  message(f)
+  tmp <- foreign::read.dbf(file = f, as.is = FALSE)
+  mun_pop_age <- dplyr::bind_rows(mun_pop_age, tmp)
+  rm(tmp)
+}
+
+mun_pop_age <- mun_pop_age |>
+  dplyr::rename(
+    codmun = COD_MUN,
+    year = ANO,
+    sex = SEXO,
+    age = IDADE,
+    pop = POP
+  ) |>
+  dplyr::mutate(
+    sex = dplyr::recode_factor(.x = sex, "1" = "Male", "2" = "Female")
+  )
+
+usethis::use_data(mun_pop_age, overwrite = TRUE, compress = "bzip2")
