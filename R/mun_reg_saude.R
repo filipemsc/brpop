@@ -2,7 +2,7 @@
 #'
 #' A dataset containing municipality and health regions codes.
 #'#'
-#' @format A tibble with 5,597 rows and 2 variables:
+#' @format A tibble.
 #' \describe{
 #'   \item{cod_mun}{municipality 6 digits code}
 #'   \item{cod_reg_saude}{health region 4 digits code}

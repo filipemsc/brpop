@@ -3,19 +3,21 @@
 \name{regsaude_sex_pop_age}
 \alias{regsaude_sex_pop_age}
 \title{Health region yearly population estimates per sex and age group}
-\usage{
-regsaude_sex_pop_age(age_group_option = "SVS2")
-}
-\arguments{
-\item{age_group_option}{character or list. SVS1, SVS2 or a list with breaks and labels.
-
+\format{
+A tibble with the following variables.
 \describe{
 \item{regsaude}{Health region code}
 \item{year}{Year of the estimative}
 \item{sex}{Sex}
 \item{age_group}{Age group}
 \item{pop}{Population estimative}
-}}
+}
+}
+\usage{
+regsaude_sex_pop_age(age_group_option = "SVS2")
+}
+\arguments{
+\item{age_group_option}{character or list. SVS1 or SVS2 for defaults age groups from DataSUS, or a list with two vectors, where the first vector are breaks, and the second vector are labels.}
 }
 \value{
 A tibble.

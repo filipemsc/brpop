@@ -6,8 +6,9 @@
 #'
 #' More details about the estimation methodology may be found here: \url{http://tabnet.datasus.gov.br/cgi/POPSVS/NT-POPULACAO-RESIDENTE-2000-2021.PDF}
 #'
-#' @param age_group_option character or list. SVS1, SVS2 or a list with breaks and labels.
+#' @param age_group_option character or list. SVS1 or SVS2 for defaults age groups from DataSUS, or a list with two vectors, where the first vector are breaks, and the second vector are labels.
 #'
+#' @format A tibble with the following variables.
 #' \describe{
 #'   \item{coduf}{UF 2 digits code}
 #'   \item{year}{Year of the estimative}
@@ -24,15 +25,17 @@
 uf_sex_pop_age <- function(age_group_option = "SVS2"){
 
   # Breaks choice
-  if(age_group_option == "SVS1"){
-    age_breaks <- age_groups$age_group_1$breaks
-    age_labels <- age_groups$age_group_1$labels
-  } else if(age_group_option == "SVS2"){
-    age_breaks <- age_groups$age_group_2$breaks
-    age_labels <- age_groups$age_group_2$labels
-  } else {
+  if(is.character(age_group_option)){
+    if(age_group_option == "SVS1"){
+      age_breaks <- age_groups$age_group_1$breaks
+      age_labels <- age_groups$age_group_1$labels
+    } else if(age_group_option == "SVS2"){
+      age_breaks <- age_groups$age_group_2$breaks
+      age_labels <- age_groups$age_group_2$labels
+    }
+  } else if(is.list(age_group_option)) {
     age_breaks <- age_group_option[[1]]
-    age_labels<- age_group_option[[2]]
+    age_labels <- age_group_option[[2]]
   }
 
   # Cluster for parallel processing

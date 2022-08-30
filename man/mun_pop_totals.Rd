@@ -3,6 +3,14 @@
 \name{mun_pop_totals}
 \alias{mun_pop_totals}
 \title{Municipality yearly population estimates}
+\format{
+A tibble with the following variables.
+\describe{
+\item{codmun}{Municipality 6 digits code}
+\item{year}{Year of the estimative}
+\item{pop}{Population estimative}
+}
+}
 \usage{
 mun_pop_totals()
 }
@@ -16,10 +24,4 @@ This function provides a tibble containing population estimates for Brazilian mu
 The estimates were calculated by DataSUS (Brazilian Ministry of Health), manually downloaded from DataSUS website, and organized as a tibble.
 
 More details about the estimation methodology may be found here: \url{http://tabnet.datasus.gov.br/cgi/POPSVS/NT-POPULACAO-RESIDENTE-2000-2021.PDF}
-
-\describe{
-\item{codmun}{Municipality 6 digits code}
-\item{year}{Year of the estimative}
-\item{pop}{Population estimative}
-}
 }

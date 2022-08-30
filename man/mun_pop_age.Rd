@@ -3,18 +3,20 @@
 \name{mun_pop_age}
 \alias{mun_pop_age}
 \title{Municipality yearly population estimates per age group}
-\usage{
-mun_pop_age(age_group_option = "SVS2")
-}
-\arguments{
-\item{age_group_option}{character or list. SVS1, SVS2 or a list with breaks and labels.
-
+\format{
+A tibble with the following variables.
 \describe{
 \item{codmun}{Municipality 6 digits code}
 \item{year}{Year of the estimative}
 \item{age_group}{Age group}
 \item{pop}{Population estimative}
-}}
+}
+}
+\usage{
+mun_pop_age(age_group_option = "SVS2")
+}
+\arguments{
+\item{age_group_option}{character or list. SVS1 or SVS2 for defaults age groups from DataSUS, or a list with two vectors, where the first vector are breaks, and the second vector are labels.}
 }
 \value{
 A tibble.

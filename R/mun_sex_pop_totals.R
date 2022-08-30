@@ -6,7 +6,7 @@
 #'
 #' More details about the estimation methodology may be found here: \url{http://tabnet.datasus.gov.br/cgi/POPSVS/NT-POPULACAO-RESIDENTE-2000-2021.PDF}
 #'
-#'
+#' @format A tibble with the following variables.
 #' \describe{
 #'   \item{codmun}{Municipality 6 digits code}
 #'   \item{year}{Year of the estimative}

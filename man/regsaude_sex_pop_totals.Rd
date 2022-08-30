@@ -3,6 +3,15 @@
 \name{regsaude_sex_pop_totals}
 \alias{regsaude_sex_pop_totals}
 \title{Health regions yearly population estimates per sex}
+\format{
+A tibble with the following variables.
+\describe{
+\item{regsaude}{Health regions code}
+\item{year}{Year of the estimative}
+\item{sex}{Sex}
+\item{pop}{Population estimative}
+}
+}
 \usage{
 regsaude_sex_pop_totals()
 }
@@ -16,11 +25,4 @@ This function provides a tibble containing population estimates for Brazilian he
 The estimates were calculated by DataSUS (Brazilian Ministry of Health), manually downloaded from DataSUS website, and organized as a tibble.
 
 More details about the estimation methodology may be found here: \url{http://tabnet.datasus.gov.br/cgi/POPSVS/NT-POPULACAO-RESIDENTE-2000-2021.PDF}
-
-\describe{
-\item{regsaude}{Health regions code}
-\item{year}{Year of the estimative}
-\item{sex}{Sex}
-\item{pop}{Population estimative}
-}
 }
