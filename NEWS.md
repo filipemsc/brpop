@@ -1,3 +1,8 @@
+# brpop 0.2.0
+
+* Major changes, using population estimatives by age in years from Brazilian Health Ministry.
+* Function names changes.
+
 # brpop 0.1.6
 
 * New function for health region and sex (`regsaude_sex_pop`) and small bug fixes.
