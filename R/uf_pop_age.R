@@ -1,6 +1,6 @@
-#' UF yearly population estimates per sex
+#' UF yearly population estimates per age group
 #'
-#' This function provides a tibble containing population estimates for Brazilian UFs per sex from 2000 to 2020.
+#' This function provides a tibble containing population estimates for Brazilian UFs per age group from 2000 to 2020.
 #'
 #' The estimates were calculated by DataSUS (Brazilian Ministry of Health), manually downloaded from DataSUS website, and organized as a tibble.
 #'
@@ -10,7 +10,7 @@
 #' \describe{
 #'   \item{coduf}{UF 2 digits code}
 #'   \item{year}{Year of the estimative}
-#'   \item{sex}{Sex}
+#'   \item{age_group}{Age group}
 #'   \item{pop}{Population estimative}
 #' }
 #'
@@ -19,7 +19,19 @@
 #' @importFrom rlang .data
 #' @export
 
-uf_sex_pop_totals <- function(){
+uf_pop_age <- function(age_group_option = "SVS2"){
+
+  # Breaks choice
+  if(age_group_option == "SVS1"){
+    age_breaks <- age_groups$age_group_1$breaks
+    age_labels <- age_groups$age_group_1$labels
+  } else if(age_group_option == "SVS2"){
+    age_breaks <- age_groups$age_group_2$breaks
+    age_labels <- age_groups$age_group_2$labels
+  } else {
+    age_breaks <- age_group_option[[1]]
+    age_labels<- age_group_option[[2]]
+  }
 
   # Cluster for parallel processing
   cluster <- multidplyr::new_cluster(n = future::availableCores(omit = 1))
@@ -27,12 +39,18 @@ uf_sex_pop_totals <- function(){
   res <- brpop::mun_pop %>%
     dplyr::mutate(coduf = substr(x = .data$codmun, start = 0, stop = 2)) %>%
     dplyr::select(-.data$codmun) %>%
-    dplyr::group_by(.data$coduf, .data$year, .data$sex) %>%
+    dplyr::mutate(age_group = cut(
+      x = .data$age,
+      breaks = age_breaks,
+      labels = age_labels,
+      ordered_result = TRUE
+    )) %>%
+    dplyr::group_by(.data$coduf, .data$year, .data$age_group) %>%
     multidplyr::partition(cluster) %>%
     dplyr::summarise(pop = sum(.data$pop, na.rm = TRUE)) %>%
     dplyr::collect() %>%
     dplyr::ungroup() %>%
-    dplyr::arrange(.data$coduf, .data$year, .data$sex)
+    dplyr::arrange(.data$coduf, .data$year, .data$age_group)
 
   return(res)
 }
