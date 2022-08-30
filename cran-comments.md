@@ -10,4 +10,4 @@ There were no ERRORs or WARNINGs. There was 1 NOTE:
 
 
 * This package provides datasets about population estimates that are not available for direct use with R in other places. All rda files were checked for maximum compression.
-* For this reason I ask for an exemption to permit bigger package.
+* For this reason I ask for an exemption to permit a bigger package.
