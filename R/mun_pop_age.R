@@ -6,6 +6,7 @@
 #'
 #' More details about the estimation methodology may be found here: \url{http://tabnet.datasus.gov.br/cgi/POPSVS/NT-POPULACAO-RESIDENTE-2000-2021.PDF}
 #'
+#' @param age_group_option character or list. SVS1, SVS2 or a list with breaks and labels.
 #'
 #' \describe{
 #'   \item{codmun}{Municipality 6 digits code}

@@ -6,6 +6,16 @@
 \usage{
 uf_pop_age(age_group_option = "SVS2")
 }
+\arguments{
+\item{age_group_option}{character or list. SVS1, SVS2 or a list with breaks and labels.
+
+\describe{
+\item{coduf}{UF 2 digits code}
+\item{year}{Year of the estimative}
+\item{age_group}{Age group}
+\item{pop}{Population estimative}
+}}
+}
 \value{
 A tibble.
 }
@@ -16,11 +26,4 @@ This function provides a tibble containing population estimates for Brazilian UF
 The estimates were calculated by DataSUS (Brazilian Ministry of Health), manually downloaded from DataSUS website, and organized as a tibble.
 
 More details about the estimation methodology may be found here: \url{http://tabnet.datasus.gov.br/cgi/POPSVS/NT-POPULACAO-RESIDENTE-2000-2021.PDF}
-
-\describe{
-\item{coduf}{UF 2 digits code}
-\item{year}{Year of the estimative}
-\item{age_group}{Age group}
-\item{pop}{Population estimative}
-}
 }
