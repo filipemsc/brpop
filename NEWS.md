@@ -2,6 +2,7 @@
 
 * Major changes, using population estimatives by age in years from Brazilian Health Ministry.
 * Function names changes.
+* New health regions, with 449 units.
 
 # brpop 0.1.6
 
