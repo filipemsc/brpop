@@ -1,29 +1,5 @@
-test_that("pop mun general is consistent", {
-  res <- mun_pop() %>%
-    dplyr::group_by(year, age_group) %>%
-    dplyr::summarise(freq = sum(pop, na.rm = TRUE)) %>%
-    dplyr::ungroup() %>%
-    dplyr::group_by(freq) %>%
-    dplyr::summarise(count = dplyr::n()) %>%
-    dplyr::filter(count > 1)
-
-  expect_equal(nrow(res), 0)
-})
-
-test_that("pop mun male is consistent", {
-  res <- mun_male_pop %>%
-    dplyr::group_by(year, age_group) %>%
-    dplyr::summarise(freq = sum(pop, na.rm = TRUE)) %>%
-    dplyr::ungroup() %>%
-    dplyr::group_by(freq) %>%
-    dplyr::summarise(count = dplyr::n()) %>%
-    dplyr::filter(count > 1)
-
-  expect_equal(nrow(res), 0)
-})
-
-test_that("pop mun female is consistent", {
-  res <- mun_female_pop %>%
+test_that("pop mun is consistent", {
+  res <- mun_pop_age() %>%
     dplyr::group_by(year, age_group) %>%
     dplyr::summarise(freq = sum(pop, na.rm = TRUE)) %>%
     dplyr::ungroup() %>%
