@@ -20,7 +20,7 @@
 
 regsaude_pop_totals <- function(){
 
-  res <- dplyr::left_join(brpop::mun_pop, brpop::mun_reg_saude, by = "codmun") %>%
+  res <- dplyr::left_join(mun_pop, brpop::mun_reg_saude, by = "codmun") %>%
     dtplyr::lazy_dt() %>%
     dplyr::group_by(.data$codregsaude, .data$year) %>%
     dplyr::summarise(pop = sum(.data$pop, na.rm = TRUE)) %>%

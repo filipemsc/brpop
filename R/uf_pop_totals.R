@@ -20,7 +20,7 @@
 
 uf_pop_totals <- function(){
 
-  res <- dtplyr::lazy_dt(brpop::mun_pop) %>%
+  res <- dtplyr::lazy_dt(mun_pop) %>%
     dplyr::mutate(coduf = substr(x = .data$codmun, start = 0, stop = 2)) %>%
     dplyr::select(-.data$codmun) %>%
     dplyr::group_by(.data$coduf, .data$year) %>%

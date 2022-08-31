@@ -20,7 +20,7 @@
 
 mun_pop_totals <- function(){
 
-  res <- dtplyr::lazy_dt(x = brpop::mun_pop) %>%
+  res <- dtplyr::lazy_dt(x = mun_pop) %>%
     dplyr::group_by(.data$codmun, .data$year) %>%
     dplyr::summarise(pop = sum(.data$pop, na.rm = TRUE)) %>%
     dplyr::ungroup() %>%

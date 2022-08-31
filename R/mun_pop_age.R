@@ -37,7 +37,7 @@ mun_pop_age <- function(age_group_option = "SVS2"){
     age_labels <- age_group_option[[2]]
   }
 
-  res <- dtplyr::lazy_dt(x = brpop::mun_pop) %>%
+  res <- dtplyr::lazy_dt(x = mun_pop) %>%
     dplyr::mutate(age_group = cut(
       x = .data$age,
       breaks = age_groups$age_group_2$breaks,

@@ -1,6 +1,6 @@
 ## code to prepare `mun-pop` pin goes here
 
-list_dbfs <- list.files(path = "data-raw/DBFs", pattern = "*.dbf", full.names = TRUE)
+list_dbfs <- list.files(path = "data-pins/DBFs/", pattern = "*.dbf", full.names = TRUE)
 
 mun_pop <- tibble::tibble()
 

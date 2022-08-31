@@ -21,6 +21,7 @@ Imports:
     dplyr,
     dtplyr,
     magrittr,
+    pins,
     rlang,
     tibble
 URL: https://rfsaldanha.github.io/brpop/

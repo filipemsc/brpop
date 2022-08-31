@@ -37,7 +37,7 @@ uf_pop_age <- function(age_group_option = "SVS2"){
     age_labels <- age_group_option[[2]]
   }
 
-  res <- dtplyr::lazy_dt(brpop::mun_pop) %>%
+  res <- dtplyr::lazy_dt(mun_pop) %>%
     dplyr::mutate(coduf = substr(x = .data$codmun, start = 0, stop = 2)) %>%
     dplyr::select(-.data$codmun) %>%
     dplyr::mutate(age_group = cut(

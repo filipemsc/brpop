@@ -37,7 +37,7 @@ regsaude_pop_age <- function(age_group_option = "SVS2"){
     age_labels <- age_group_option[[2]]
   }
 
-  res <- dplyr::left_join(brpop::mun_pop, brpop::mun_reg_saude, by = "codmun") %>%
+  res <- dplyr::left_join(mun_pop, brpop::mun_reg_saude, by = "codmun") %>%
     dtplyr::lazy_dt() %>%
     dplyr::mutate(age_group = cut(
       x = .data$age,
