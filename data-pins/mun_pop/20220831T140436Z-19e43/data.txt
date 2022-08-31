@@ -1,0 +1,8 @@
+file: mun_pop.rds
+file_size: 27960723
+pin_hash: 19e43aea34a3f36d
+type: rds
+title: 'mun_pop: a pinned 18948405 x 5 data frame'
+description: ~
+created: 20220831T140436Z
+api_version: 1.0

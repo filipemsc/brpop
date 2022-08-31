@@ -2,6 +2,7 @@
 ^\.Rproj\.user$
 ^LICENSE\.md$
 ^data-raw$
+^data-pins$
 ^CRAN-SUBMISSION$
 ^cran-comments\.md$
 ^_pkgdown\.yml$
