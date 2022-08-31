@@ -17,9 +17,10 @@ Suggests:
     testthat (>= 3.0.0)
 Config/testthat/edition: 3
 Imports: 
+    data.table,
     dplyr,
-    future,
+    dtplyr,
     magrittr,
-    multidplyr,
-    rlang
+    rlang,
+    tibble
 URL: https://rfsaldanha.github.io/brpop/

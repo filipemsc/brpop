@@ -38,22 +38,19 @@ regsaude_sex_pop_age <- function(age_group_option = "SVS2"){
     age_labels <- age_group_option[[2]]
   }
 
-  # Cluster for parallel processing
-  cluster <- multidplyr::new_cluster(n = future::availableCores(omit = 1))
-
   res <- dplyr::left_join(brpop::mun_pop, brpop::mun_reg_saude, by = "codmun") %>%
+    dtplyr::lazy_dt() %>%
     dplyr::mutate(age_group = cut(
       x = .data$age,
       breaks = age_breaks,
-      labels = age_labels,
       ordered_result = TRUE
     )) %>%
     dplyr::group_by(.data$codregsaude, .data$year, .data$sex, .data$age_group) %>%
-    multidplyr::partition(cluster) %>%
     dplyr::summarise(pop = sum(.data$pop, na.rm = TRUE)) %>%
-    dplyr::collect() %>%
     dplyr::ungroup() %>%
-    dplyr::arrange(.data$codregsaude, .data$year, .data$sex, .data$age_group)
+    dplyr::arrange(.data$codregsaude, .data$year, .data$sex, .data$age_group) %>%
+    tibble::as_tibble() %>%
+    dplyr::mutate(age_group = factor(.data$age_group, labels = age_labels))
 
   return(res)
 }

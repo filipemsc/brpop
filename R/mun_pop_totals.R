@@ -20,16 +20,12 @@
 
 mun_pop_totals <- function(){
 
-  # Cluster for parallel processing
-  cluster <- multidplyr::new_cluster(n = future::availableCores(omit = 1))
-
-  res <- brpop::mun_pop %>%
+  res <- dtplyr::lazy_dt(x = brpop::mun_pop) %>%
     dplyr::group_by(.data$codmun, .data$year) %>%
-    multidplyr::partition(cluster) %>%
     dplyr::summarise(pop = sum(.data$pop, na.rm = TRUE)) %>%
-    dplyr::collect() %>%
     dplyr::ungroup() %>%
-    dplyr::arrange(.data$codmun, .data$year)
+    dplyr::arrange(.data$codmun, .data$year) %>%
+    tibble::as_tibble()
 
   return(res)
 }

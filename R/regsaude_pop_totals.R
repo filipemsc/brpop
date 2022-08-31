@@ -20,16 +20,13 @@
 
 regsaude_pop_totals <- function(){
 
-  # Cluster for parallel processing
-  cluster <- multidplyr::new_cluster(n = future::availableCores(omit = 1))
-
   res <- dplyr::left_join(brpop::mun_pop, brpop::mun_reg_saude, by = "codmun") %>%
+    dtplyr::lazy_dt() %>%
     dplyr::group_by(.data$codregsaude, .data$year) %>%
-    multidplyr::partition(cluster) %>%
     dplyr::summarise(pop = sum(.data$pop, na.rm = TRUE)) %>%
-    dplyr::collect() %>%
     dplyr::ungroup() %>%
-    dplyr::arrange(.data$codregsaude, .data$year)
+    dplyr::arrange(.data$codregsaude, .data$year) %>%
+    tibble::as_tibble()
 
   return(res)
 }
